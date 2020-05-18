@@ -27,7 +27,26 @@
        <div class = "main_div">
           
            <div class="Zagolovok">
-               <h1 align="center"><i>Интернет магазин</i></h1>
+               <div class="for_h1"><h1 align="center"><i>Интернет магазин</i></h1></div>
+               <div class="container">
+                   <select id="selectItem">
+
+                       <option id="Perm">Пермь</option>
+                       <option id="Moscou">Москва</option>
+                       <option id="SPB">Санкт-Петербург</option>
+                       <option id="EKB">Екатеринбург</option>
+
+                   </select>
+
+                   <div class="containers">
+
+                       <div class="Perm"></div>
+                       <div class="Moscou"></div>
+                       <div class="SPB"></div>
+                       <div class="EKB"></div>
+
+                   </div>
+               </div>
            </div>
           
            <div class="box">
@@ -47,5 +66,23 @@
        </div>
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
        <script src="eshop.js"></script>
+       <script>
+            $( function() {
+            if (localStorage.getItem("myKey")) {
+                var stored_select = localStorage.getItem("myKey");
+                $('#' + stored_select).prop( "selected", true );
+                $('.' + stored_select).show();
+                } else {
+            $('.chelyabinsk').show();
+            }
+            });
+
+            $("#selectItem").change(function(){
+                $('.containers').find('div').hide();
+                var selected = $('#selectItem option:selected').attr('id');
+                localStorage.setItem("myKey", selected);
+                $('.' + selected).show();
+            });
+       </script>
     </body>
 </html>
